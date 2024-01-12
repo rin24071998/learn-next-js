@@ -1,5 +1,6 @@
 import { SUCCESS, WAITING } from '@/constant/common';
 import { IToken } from '@/interface/interface';
+import { useAppSelector } from '@/redux/hooks';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -9,11 +10,11 @@ export function useAuth(): IToken {
     token: '',
   });
   const pathname = usePathname();
+  const { accesstoken } = useAppSelector((state) => state?.user);
   useEffect(() => {
-    const getToken = localStorage?.getItem('token') || '';
     setToken({
       status: SUCCESS,
-      token: getToken,
+      token: accesstoken,
     });
   }, [pathname]);
   return token;

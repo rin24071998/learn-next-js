@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/redux/hooks';
+import { authend } from '@/redux/user/userSlice';
 function Copyright(props: any) {
   return (
     <Typography
@@ -32,17 +34,21 @@ function Copyright(props: any) {
 }
 
 export default function Login() {
-    const router = useRouter();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    dispatch(
+      authend({
+        accesstoken: '12345',
+      })
+    );
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
-    localStorage.setItem('token', '123456');
     router.push('/dashboard');
-
   };
 
   return (

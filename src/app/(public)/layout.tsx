@@ -1,7 +1,6 @@
-'use client'
+'use client';
 import { SUCCESS, WAITING } from '@/constant/common';
 import { useAuth } from '@/hooks/useAuth';
-import AdminHeader from '@/layout/admin/AdminHeader';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER, appRouter } from '@/router/router';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -36,9 +35,5 @@ export default function PublicLayout({
   ) {
     return <></>;
   }
-  return (
-    <section>
-      <>{children}</>
-    </section>
-  );
+  return <>{children}</>;
 }
